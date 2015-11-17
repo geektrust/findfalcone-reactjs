@@ -18,9 +18,8 @@ var SelectPlanets = React.createClass({
     }
 });
 
-
 var SelectPlanetList = React.createClass({
-	componentDidMount: function() {
+    componentDidMount: function() {
         $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -37,15 +36,73 @@ var SelectPlanetList = React.createClass({
             planets: data
         })
     },
+    render: function() {
+        return ( < div className = "container" > < h3 > Planets to Search
+            for Falcone < /h3>  <div className ="row"> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > < /div> <div className="col-md-3 ">< SelectPlanets  optionData={this.state.planets} / > < /div> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > < /div> <div className="col-md-3"> < SelectPlanets optionData={this.state.planets} / > < /div> < /div > < /div > )
+        }
+});
 
-    render : function(){
-    	     return ( < div className = "container" > < h3 > Planets to Search
-            for Falcone < /h3>  <div className ="row"> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > </div> <div className="col-md-3 ">< SelectPlanets  optionData={this.state.planets} / ></div> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > < /div> <div className="col-md-3"> < SelectPlanets optionData={this.state.planets} / > < /div> < /div> < /div > )
+var Vehicles = React.createClass({
+    render: function() {
+        return ( < div > {
+                this.props.vehicles.map(function(vehicle) {
+                        return <div > < input id = {
+                            vehicle.name
+                        }
+                        name = "vehicles"
+                        type = "radio"
+                        value = {
+                            vehicle.name
+                        }
+                        /> < label > {
+                        vehicle.name
+                    } - {
+                        vehicle.total_no
+                    } < /label>  </div >
+                })
+        } < /div > );
     }
-
+});
+var VehiclesRadioGroupList = React.createClass({
+    componentDidMount: function() {
+    	console.log(this.props.url)
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            success: this.succesHandler
+        });
+    },
+    getInitialState: function() {
+        return {
+            vehicles: []
+        }
+    },
+    succesHandler: function(data) {
+    	console.log("Vehicle data" + data)
+        this.setState({
+            vehicles: data
+        })
+    },
+    // render : function(){
+    // 	return(<div><Vehicles vehicles={this.state.vehicles} /></div>)
+    // }
+           render: function() {
+                return ( < div className = "container" > < h3 > Vehicles to Send < /h3>  <div className ="row"> <div className="col-md-3"><Vehicles vehicles={this.state.vehicles} /> < /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div></div > < /div> );
+                }
 });
 
 
-ReactDOM.render( < SelectPlanetList url = "http://findfalcone.herokuapp.com/planets"/ > ,
-    document.getElementById('content')
-);
+        var SelectionDiv = React.createClass({
+                    render: function() {
+                        return ( < div >
+                            < SelectPlanetList url = "http://findfalcone.herokuapp.com/planets" / >
+                            < VehiclesRadioGroupList url = "http://findfalcone.herokuapp.com/vehicles" / >
+                            < /div>)
+                        }
+
+                    });
+
+                ReactDOM.render( < SelectionDiv / > ,
+
+                    document.getElementById('content')
+                );
