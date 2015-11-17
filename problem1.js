@@ -1,32 +1,7 @@
-var CommentBox = React.createClass({
-    render: function() {
-        return ( < div className = "commentBox" >
-            Hello, world!I am a CommentBox. < /div>
-        );
-    }
-});
-
 var SelectPlanets = React.createClass({
-    componentDidMount: function() {
-        $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            success: this.succesHandler
-        });
-    },
-    getInitialState: function() {
-        return {
-            planets: []
-        }
-    },
-    succesHandler: function(data) {
-        this.setState({
-            planets: data
-        })
-    },
     render: function() {
         return ( < div > < select > {
-            this.state.planets.map(function(planet) {
+            this.props.optionData.map(function(planet) {
                 return <option key = {
                     planet.name
                 }
@@ -45,17 +20,32 @@ var SelectPlanets = React.createClass({
 
 
 var SelectPlanetList = React.createClass({
-            render: function() {
-                return ( < div > < h3 > Planets to Search
-                    for Falcone < /h3>  < SelectPlanets url = "http://findfalcone.herokuapp.com/planets" / >
-                    < SelectPlanets url = "http://findfalcone.herokuapp.com/planets" / >
-                    < SelectPlanets url = "http://findfalcone.herokuapp.com/planets" / >
-                    < SelectPlanets url = "http://findfalcone.herokuapp.com/planets" / >
-                    < /div>)
-                }
-            })
+	componentDidMount: function() {
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            success: this.succesHandler
+        });
+    },
+    getInitialState: function() {
+        return {
+            planets: []
+        }
+    },
+    succesHandler: function(data) {
+        this.setState({
+            planets: data
+        })
+    },
+
+    render : function(){
+    	     return ( < div className = "container" > < h3 > Planets to Search
+            for Falcone < /h3>  <div className ="row"> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > </div> <div className="col-md-3 ">< SelectPlanets  optionData={this.state.planets} / ></div> <div className="col-md-3">< SelectPlanets optionData={this.state.planets} / > < /div> <div className="col-md-3"> < SelectPlanets optionData={this.state.planets} / > < /div> < /div> < /div > )
+    }
+
+});
 
 
-        ReactDOM.render( < SelectPlanetList / > ,
-            document.getElementById('content')
-        );
+ReactDOM.render( < SelectPlanetList url = "http://findfalcone.herokuapp.com/planets"/ > ,
+    document.getElementById('content')
+);
