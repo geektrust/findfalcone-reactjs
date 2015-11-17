@@ -44,12 +44,13 @@ var SelectPlanetList = React.createClass({
 
 var Vehicles = React.createClass({
     render: function() {
+    	var radioName = this.props.name
         return ( < div > {
                 this.props.vehicles.map(function(vehicle) {
                         return <div > < input id = {
                             vehicle.name
                         }
-                        name = "vehicles"
+                        name = {radioName}
                         type = "radio"
                         value = {
                             vehicle.name
@@ -63,9 +64,9 @@ var Vehicles = React.createClass({
         } < /div > );
     }
 });
+
 var VehiclesRadioGroupList = React.createClass({
     componentDidMount: function() {
-    	console.log(this.props.url)
         $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -78,31 +79,31 @@ var VehiclesRadioGroupList = React.createClass({
         }
     },
     succesHandler: function(data) {
-    	console.log("Vehicle data" + data)
         this.setState({
             vehicles: data
         })
     },
-    // render : function(){
-    // 	return(<div><Vehicles vehicles={this.state.vehicles} /></div>)
-    // }
-           render: function() {
-                return ( < div className = "container" > < h3 > Vehicles to Send < /h3>  <div className ="row"> <div className="col-md-3"><Vehicles vehicles={this.state.vehicles} /> < /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  />< /div></div > < /div> );
-                }
+   render: function() {
+        return ( < div className = "container" > < h3 > Vehicles to Send < /h3>  <div className ="row"> <div className="col-md-3"><Vehicles vehicles={this.state.vehicles} name ="p1" /> < /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles} name ="p2"  />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles}  name ="p3" />< /div><div className="col-md-3"><Vehicles vehicles={this.state.vehicles} name ="p4"  />< /div></div > < /div> );
+        }
 });
 
+var FindFalconeButton = React.createClass({
+	render : function(){
+		return (<div className="container"><div className="row"> <br/><button type="button" className="center-block btn btn-success">Find Falcone</button></div> </div>)
+	}
+});
 
-        var SelectionDiv = React.createClass({
-                    render: function() {
-                        return ( < div >
-                            < SelectPlanetList url = "http://findfalcone.herokuapp.com/planets" / >
-                            < VehiclesRadioGroupList url = "http://findfalcone.herokuapp.com/vehicles" / >
-                            < /div>)
-                        }
+var SelectionDiv = React.createClass({
+	render: function() {
+	    return ( < div >
+	        < SelectPlanetList url = "http://findfalcone.herokuapp.com/planets" / >
+	        < VehiclesRadioGroupList url = "http://findfalcone.herokuapp.com/vehicles" / >
+	        <FindFalconeButton/>
+	        < /div>)
+	    }
+});
 
-                    });
-
-                ReactDOM.render( < SelectionDiv / > ,
-
-                    document.getElementById('content')
-                );
+ReactDOM.render( < SelectionDiv / > ,
+	document.getElementById('content')
+);
