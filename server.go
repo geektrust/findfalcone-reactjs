@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println("ReactJS Server running on 3000")
+	fmt.Println("ReactJS Server running on 4000")
 	http.Handle("/", http.FileServer(http.Dir("./")))
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":4000", nil)
 }
