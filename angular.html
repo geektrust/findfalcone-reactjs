@@ -1,7 +1,7 @@
 <html ng-app="findfalcone">
   <head>
     <meta charset="utf-8" />
-    <title>React Tutorial</title>
+    <title>Find Falcone Test UI in AngularJS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
@@ -16,8 +16,8 @@
       <h1>This is the angular Page</h1>
       <button  type="button" ng-click="getTokenViaAngular()">Get Token</button>
         <input type="text" id="token" ng-model="token"/>
-        <textarea id="req" cols="100" rows="10" ng-model="data"></textarea>
-        <button  type="button" ng-click="findFalcone()">Find</button>
+        <textarea id="req" cols="100" rows="10" ng-model="data" placeholder="Enter the request JSON for /find API with the token obtained"></textarea>
+        <button  type="button" ng-click="findFalcone()" class="btn-success">Find</button>
     </div>
     
   </body>
