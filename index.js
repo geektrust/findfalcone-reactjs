@@ -48,7 +48,7 @@ function find() {
         },
         method: 'POST',
         success: function(data) {
-            console.log(data)
+            alert(JSON.stringify(data));
         }
     });
 }
