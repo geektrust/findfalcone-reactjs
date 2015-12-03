@@ -1,6 +1,6 @@
 # findfalcone-ui
 
-This is a sample web app, written in normal Javascript/Jquery, AngularJS and ReactJS. It can be run on a Go Web Server or NodeJS Web Server.
+This is a sample web app, written in normal Javascript/Jquery, AngularJS and ReactJS. It can be run on a Go Web Server or NodeJS Web Server on Port 4000.
 
 
 ## Pre-requisites 
@@ -11,7 +11,7 @@ For running the Node JS web Server, NodeJS 0.10 should installed to run the go s
 
 To start the Go Lang based Server run the command `go run server.go`. The web app will be up on Port 4000
 
-To start the NodeJS based Server run the command `node node-server.js`. The web app will be up on Port 4040. If you find any difficulty in getting this up, do run 
+To start the NodeJS based Server run the command `node node-server.js`. The web app will be up on Port 4000. If you find any difficulty in getting this up install the `express` dependency, do run 
 
 ```
 npm install express -g
