@@ -9,6 +9,6 @@ var server = express();
 
 server.use(express.static(__dirname));
 
-server.listen(4040, function() { 
-    console.log('listening on port 4040');     
+server.listen(4000, function() { 
+    console.log('listening on port 4000');     
 });
